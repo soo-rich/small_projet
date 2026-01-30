@@ -1,10 +1,8 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity } from 'typeorm';
+import { Common_entity } from '../../common/entities/common_entity';
 
 @Entity('kits')
-export class Kit {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class Kit extends Common_entity {
   @Column({ default: true })
   isActive: boolean;
 

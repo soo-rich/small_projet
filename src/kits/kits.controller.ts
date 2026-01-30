@@ -10,7 +10,9 @@ import {
 import { KitsService } from './kits.service';
 import { CreateKitDto } from './dto/create-kit.dto';
 import { UpdateKitDto } from './dto/update-kit.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Abonnements Kits')
 @Controller('kits')
 export class KitsController {
   constructor(private readonly kitsService: KitsService) {}
@@ -27,16 +29,16 @@ export class KitsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.kitsService.findOne(+id);
+    return this.kitsService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateKitDto: UpdateKitDto) {
-    return this.kitsService.update(+id, updateKitDto);
+    return this.kitsService.update(id, updateKitDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.kitsService.remove(+id);
+    return this.kitsService.remove(id);
   }
 }

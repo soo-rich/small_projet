@@ -20,11 +20,11 @@ export class KitsService {
     return `This action returns all kits`;
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return this.kitRepository.findOneBy({ id });
   }
 
-  update(id: number, updateKitDto: UpdateKitDto) {
+  update(id: string, updateKitDto: UpdateKitDto) {
     return this.kitRepository.update(
       {
         id,
@@ -33,7 +33,7 @@ export class KitsService {
     );
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return this.kitRepository.update({ id }, { isActive: false });
   }
 }

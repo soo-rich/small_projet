@@ -4,6 +4,8 @@ import { ConfigModule } from '@nestjs/config';
 import { KitsModule } from './kits/kits.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ThrottlerModule } from '@nestjs/throttler';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -29,6 +31,8 @@ import { ThrottlerModule } from '@nestjs/throttler';
       ],
     }),
     KitsModule,
+    AuthModule,
+    UsersModule,
   ],
   controllers: [],
   providers: [],
