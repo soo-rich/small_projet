@@ -4,7 +4,6 @@ import {
   Delete,
   Get,
   Param,
-  ParseFilePipeBuilder,
   Patch,
   Post,
   UploadedFile,
@@ -26,16 +25,11 @@ export class UsersController {
   @Post()
   create(
     @Body() createUserDto: CreateUserDto,
-    @UploadedFile(
-      new ParseFilePipeBuilder()
-        .addFileTypeValidator({
-          fileType: /^image\/(png|jpeg)$/,
-        })
-        .build(),
-    )
-    file: Express.Multer.File,
+    @UploadedFile()
+    avatar: Express.Multer.File,
   ) {
-    return this.usersService.create(createUserDto, file);
+
+    return this.usersService.create(createUserDto, avatar);
   }
 
   @Get()
@@ -47,21 +41,17 @@ export class UsersController {
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(id);
   }
+
   @UseInterceptors(FileInterceptor('avatar'))
+  @ApiConsumes('multipart/form-data')
   @Patch(':id')
   update(
     @Param('id') id: string,
     @Body() updateUserDto: UpdateUserDto,
-    @UploadedFile(
-      new ParseFilePipeBuilder()
-        .addFileTypeValidator({
-          fileType: /^image\/(png|jpeg)$/,
-        })
-        .build(),
-    )
-    file: Express.Multer.File,
+    @UploadedFile()
+    avatar: Express.Multer.File,
   ) {
-    return this.usersService.update(id, updateUserDto, file);
+    return this.usersService.update(id, updateUserDto, avatar);
   }
 
   @Delete(':id')

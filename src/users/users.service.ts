@@ -13,9 +13,10 @@ export class UsersService {
   ) {}
 
   create(createUserDto: CreateUserDto, file: Express.Multer.File) {
+    console.log(file);
     return this.usersRepository.save({
       ...createUserDto,
-      avatar: file?.filename,
+      avatar: file?.path,
       isActive: true,
     });
   }
@@ -35,7 +36,7 @@ export class UsersService {
   update(id: string, updateUserDto: UpdateUserDto, file?: Express.Multer.File) {
     return this.usersRepository.update(id, {
       ...updateUserDto,
-      avatar: file ? file.filename : undefined,
+      avatar: file ? file.path : undefined,
     });
   }
 

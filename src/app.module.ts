@@ -6,9 +6,17 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
+import { UploadModule } from './upload/upload.module';
+import { PayementModule } from './payement/payement.module';
 
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'uploads'),
+      serveRoot: '/uploads',
+    }),
     ConfigModule.forRoot({
       isGlobal: true,
     }),
@@ -33,6 +41,8 @@ import { UsersModule } from './users/users.module';
     KitsModule,
     AuthModule,
     UsersModule,
+    UploadModule,
+    PayementModule,
   ],
   controllers: [],
   providers: [],
