@@ -5,9 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Kit } from './entities/kit.entity';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([Kit])
-  ],
+  imports: [TypeOrmModule.forFeature([Kit])],
   controllers: [KitsController],
   providers: [KitsService],
 })
